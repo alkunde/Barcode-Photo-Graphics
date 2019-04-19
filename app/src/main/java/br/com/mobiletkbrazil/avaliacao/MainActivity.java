@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         switch (v.getId()) {
             case R.id.bt_relatorio:
                 Toast.makeText(MainActivity.this, "Relatórios", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, RelatorioActivity.class));
                 break;
             case R.id.bt_galeria_fotos:
                 Toast.makeText(MainActivity.this, "Galeria foto", Toast.LENGTH_SHORT).show();

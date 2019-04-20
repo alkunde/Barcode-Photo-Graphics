@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_relatorio:
-                Toast.makeText(MainActivity.this, "Relatórios", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Relatórios", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, RelatorioActivity.class));
                 break;
             case R.id.bt_galeria_fotos:

@@ -13,11 +13,37 @@
 
     <Button
         style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:id="@+id/bt_novos_dados"
+        android:id="@+id/bt_graph_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Novos dados"
+        android:text="Gráfico Linhas"
         android:layout_below="@id/graph"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/bt_graph_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gráfico Barras"
+        android:layout_below="@id/bt_graph_line"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/bt_graph_pie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gráfico Pizza"
+        android:layout_below="@id/bt_graph_bar"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"

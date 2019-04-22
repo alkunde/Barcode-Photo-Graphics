@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Avaliacao</string>
+    <string name="title_activity_cadastro_cliente">CadastroClienteActivity</string>
 </resources>

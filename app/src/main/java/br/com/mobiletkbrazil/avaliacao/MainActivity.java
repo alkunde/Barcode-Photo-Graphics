@@ -1,13 +1,17 @@
 package br.com.mobiletkbrazil.avaliacao;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
@@ -18,9 +22,26 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.wonderkiln.camerakit.CameraKitError;
+import com.wonderkiln.camerakit.CameraKitEvent;
+import com.wonderkiln.camerakit.CameraKitEventListener;
+import com.wonderkiln.camerakit.CameraKitImage;
+import com.wonderkiln.camerakit.CameraKitVideo;
+import com.wonderkiln.camerakit.CameraView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+
+import dmax.dialog.SpotsDialog;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener, OnRequestPermissionsResultCallback {
 
@@ -43,14 +64,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_relatorio:
-                //Toast.makeText(MainActivity.this, "Relatórios", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, RelatorioActivity.class));
                 break;
             case R.id.bt_galeria_fotos:
                 Toast.makeText(MainActivity.this, "Galeria foto", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(MainActivity.this, ClientesActivity.class));
                 break;
             case R.id.bt_leitor:
-                Toast.makeText(MainActivity.this, "Leitor", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Leitor", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ProdutosActivity.class));
+                //cameraView.start();
+                //cameraView.captureImage();
                 break;
             case R.id.floatingActionButton:
                 getPermissions();
@@ -100,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             try {
                 Bitmap bm1 = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(mCurrentPhotoPath)));
